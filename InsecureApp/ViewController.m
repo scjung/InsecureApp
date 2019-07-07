@@ -20,4 +20,156 @@
 }
 
 
+- (IBAction)HTTPRspCacheLeakDownloadButton1Tapped:(UIButton *)sender {
+    NSURL *url = [NSURL URLWithString:[self.HTTPRspCacheLeakURLField text]];
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    void (^setStatusLabelAfterCompletion)(NSData *, NSURLResponse *, NSError *) =
+        ^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            NSString *label;
+            UIImage *image = nil;
+            if (error == nil) {
+                if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                    NSHTTPURLResponse *httpRsp = (NSHTTPURLResponse *)response;
+                    label = [NSString stringWithFormat:@"Success\n(status code=%ld, mime type=%@)",
+                             httpRsp.statusCode, httpRsp.MIMEType];
+                    if ([httpRsp.MIMEType isEqualToString:@"image/png"]) {
+                        image = [UIImage imageWithData:data];
+                    }
+                } else {
+                    label = @"Non-HTTP response.";
+                }
+            } else {
+                label = error.localizedDescription;
+            }
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                self.HTTPRspCacheLeakStatusLabel.text = label;
+                if (image != nil) {
+                    [self.HTTPRspCacheLeakImage setImage:image];
+                }
+            });
+    };
+    
+    NSURLSessionDataTask *task =
+        [session dataTaskWithURL:url completionHandler:setStatusLabelAfterCompletion];
+    
+    self.HTTPRspCacheLeakStatusLabel.text = @"Downloading...";
+    [task resume];
+}
+
+- (IBAction)HTTPRspCacheLeakDownloadButton2Tapped:(id)sender {
+    NSURL *url = [NSURL URLWithString:[self.HTTPRspCacheLeakURLField text]];
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    void (^setStatusLabelAfterCompletion)(NSURL *, NSURLResponse *, NSError *) =
+    ^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSString *label;
+        UIImage *image = nil;
+        if (error == nil) {
+            if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                NSHTTPURLResponse *httpRsp = (NSHTTPURLResponse *)response;
+                label = [NSString stringWithFormat:@"Success\n(status code=%ld, mime type=%@)",
+                         httpRsp.statusCode, httpRsp.MIMEType];
+                if ([httpRsp.MIMEType isEqualToString:@"image/png"]) {
+                    image = [UIImage imageWithData:[NSData dataWithContentsOfURL:location]];
+                }
+            } else {
+                label = @"Non-HTTP response.";
+            }
+        } else {
+            label = error.localizedDescription;
+        }
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            self.HTTPRspCacheLeakStatusLabel.text = label;
+            if (image != nil) {
+                [self.HTTPRspCacheLeakImage setImage:image];
+            }
+        });
+    };
+    
+    NSURLSessionDownloadTask *task =
+        [session downloadTaskWithURL:url completionHandler:setStatusLabelAfterCompletion];
+    
+    self.HTTPRspCacheLeakStatusLabel.text = @"Downloading...";
+    [task resume];
+}
+
+- (IBAction)HTTPRspCacheLeakDownloadButton3Tapped:(UIButton *)sender {
+    NSURL *url = [NSURL URLWithString:[self.HTTPRspCacheLeakURLField text]];
+    
+    NSURLSession *session =
+        [NSURLSession sessionWithConfiguration:NSURLSessionConfiguration.ephemeralSessionConfiguration];
+    
+    void (^setStatusLabelAfterCompletion)(NSData *, NSURLResponse *, NSError *) =
+    ^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSString *label;
+        UIImage *image = nil;
+        if (error == nil) {
+            if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                NSHTTPURLResponse *httpRsp = (NSHTTPURLResponse *)response;
+                label = [NSString stringWithFormat:@"Success\n(status code=%ld, mime type=%@)",
+                         httpRsp.statusCode, httpRsp.MIMEType];
+                if ([httpRsp.MIMEType isEqualToString:@"image/png"]) {
+                    image = [UIImage imageWithData:data];
+                }
+            } else {
+                label = @"Non-HTTP response.";
+            }
+        } else {
+            label = error.localizedDescription;
+        }
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            self.HTTPRspCacheLeakStatusLabel.text = label;
+            if (image != nil) {
+                [self.HTTPRspCacheLeakImage setImage:image];
+            }
+        });
+    };
+    
+    NSURLSessionDataTask *task =
+    [session dataTaskWithURL:url completionHandler:setStatusLabelAfterCompletion];
+    
+    self.HTTPRspCacheLeakStatusLabel.text = @"Downloading...";
+    [task resume];
+}
+
+- (IBAction)HTTPRspCacheLeakDownloadButton4Tapped:(UIButton *)sender {
+    NSURL *url = [NSURL URLWithString:[self.HTTPRspCacheLeakURLField text]];
+    
+    NSURLSessionConfiguration *sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration;
+    sessionConfig.URLCache = nil;
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig];
+    
+    void (^setStatusLabelAfterCompletion)(NSData *, NSURLResponse *, NSError *) =
+    ^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSString *label;
+        UIImage *image = nil;
+        if (error == nil) {
+            if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                NSHTTPURLResponse *httpRsp = (NSHTTPURLResponse *)response;
+                label = [NSString stringWithFormat:@"Success\n(status code=%ld, mime type=%@)",
+                         httpRsp.statusCode, httpRsp.MIMEType];
+                if ([httpRsp.MIMEType isEqualToString:@"image/png"]) {
+                    image = [UIImage imageWithData:data];
+                }
+            } else {
+                label = @"Non-HTTP response.";
+            }
+        } else {
+            label = error.localizedDescription;
+        }
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            self.HTTPRspCacheLeakStatusLabel.text = label;
+            if (image != nil) {
+                [self.HTTPRspCacheLeakImage setImage:image];
+            }
+        });
+    };
+    
+    NSURLSessionDataTask *task =
+    [session dataTaskWithURL:url completionHandler:setStatusLabelAfterCompletion];
+    
+    self.HTTPRspCacheLeakStatusLabel.text = @"Downloading...";
+    [task resume];
+}
 @end

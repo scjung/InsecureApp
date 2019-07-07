@@ -1,24 +1,147 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--HTTP Response Cache Leak-->
+        <scene sceneID="WuS-vE-ifr">
+            <objects>
+                <viewController title="HTTP Response Cache Leak" id="6Bh-W7-dG0" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JDV-rN-jWE">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2eH-pp-E1Y">
+                                <rect key="frame" x="15" y="44" width="384" height="496"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H3o-Mn-cAy">
+                                        <rect key="frame" x="44" y="0.0" width="296" height="57.5"/>
+                                        <string key="text">Insecure Storage:
+HTTP Response Cache Leak</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="https://via.placeholder.com/300x100.png?text=Hello" borderStyle="roundedRect" placeholder="Enter URL to Download" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QZ4-fG-shL">
+                                        <rect key="frame" x="0.0" y="77.5" width="384" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ready" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iTC-C7-NL2">
+                                        <rect key="frame" x="168" y="127.5" width="48" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F8E-kM-a5v">
+                                        <rect key="frame" x="0.0" y="168" width="384" height="30"/>
+                                        <state key="normal" title="Download (sharedSession, DataTask)"/>
+                                        <connections>
+                                            <action selector="HTTPRspCacheLeakDownloadButton1Tapped:" destination="6Bh-W7-dG0" eventType="touchUpInside" id="Nvy-gI-C0q"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kuO-iM-DbO">
+                                        <rect key="frame" x="0.0" y="218" width="384" height="30"/>
+                                        <state key="normal" title="Download (sharedSession, DownloadTask)"/>
+                                        <connections>
+                                            <action selector="HTTPRspCacheLeakDownloadButton2Tapped:" destination="6Bh-W7-dG0" eventType="touchUpInside" id="aDD-h9-H9Y"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="enZ-eR-EAT">
+                                        <rect key="frame" x="0.0" y="268" width="384" height="30"/>
+                                        <state key="normal" title="Download (ephmeral session, DataTask)"/>
+                                        <connections>
+                                            <action selector="HTTPRspCacheLeakDownloadButton3Tapped:" destination="6Bh-W7-dG0" eventType="touchUpInside" id="VRM-Mf-zxJ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28r-xh-teK">
+                                        <rect key="frame" x="0.0" y="318" width="384" height="30"/>
+                                        <state key="normal" title="Download (session with cache=nil, DataTask)"/>
+                                        <connections>
+                                            <action selector="HTTPRspCacheLeakDownloadButton4Tapped:" destination="6Bh-W7-dG0" eventType="touchUpInside" id="geh-5f-5We"/>
+                                        </connections>
+                                    </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uxv-07-Iuc">
+                                        <rect key="frame" x="72" y="368" width="240" height="128"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="QZ4-fG-shL" secondAttribute="trailing" id="6fY-Vc-I5K"/>
+                                    <constraint firstItem="enZ-eR-EAT" firstAttribute="leading" secondItem="2eH-pp-E1Y" secondAttribute="leading" id="DD3-bb-nkf"/>
+                                    <constraint firstAttribute="trailing" secondItem="F8E-kM-a5v" secondAttribute="trailing" id="ITO-Xl-ShL"/>
+                                    <constraint firstItem="kuO-iM-DbO" firstAttribute="leading" secondItem="2eH-pp-E1Y" secondAttribute="leading" id="LiJ-rA-uoG"/>
+                                    <constraint firstAttribute="trailing" secondItem="kuO-iM-DbO" secondAttribute="trailing" id="gBb-pL-MuR"/>
+                                    <constraint firstAttribute="trailing" secondItem="28r-xh-teK" secondAttribute="trailing" id="nox-xj-K3v"/>
+                                    <constraint firstItem="28r-xh-teK" firstAttribute="leading" secondItem="2eH-pp-E1Y" secondAttribute="leading" id="tH6-rC-UeW"/>
+                                    <constraint firstAttribute="trailing" secondItem="enZ-eR-EAT" secondAttribute="trailing" id="zxh-ch-BMu"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="2eH-pp-E1Y" firstAttribute="leading" secondItem="G8p-PS-2Xy" secondAttribute="leading" constant="15" id="cNZ-6i-hCa"/>
+                            <constraint firstItem="2eH-pp-E1Y" firstAttribute="top" secondItem="G8p-PS-2Xy" secondAttribute="top" id="hul-hR-y81"/>
+                            <constraint firstItem="G8p-PS-2Xy" firstAttribute="trailing" secondItem="2eH-pp-E1Y" secondAttribute="trailing" constant="15" id="zyi-v6-elX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="G8p-PS-2Xy"/>
+                    </view>
+                    <connections>
+                        <outlet property="HTTPRspCacheLeakImage" destination="uxv-07-Iuc" id="QS7-4L-zIF"/>
+                        <outlet property="HTTPRspCacheLeakStatusLabel" destination="iTC-C7-NL2" id="dGx-xr-gW2"/>
+                        <outlet property="HTTPRspCacheLeakURLField" destination="QZ4-fG-shL" id="hLg-lM-tZv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1S5-X4-e6x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="974" y="-38"/>
+        </scene>
+        <!--Menu-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController title="Menu" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="98" translatesAutoresizingMaskIntoConstraints="NO" id="meQ-vC-Afk">
+                                <rect key="frame" x="15" y="64" width="384" height="157"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vulnerabilities" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAF-Qc-buF">
+                                        <rect key="frame" x="119.5" y="0.0" width="145" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kqg-yy-M5u">
+                                        <rect key="frame" x="32.5" y="127" width="319" height="30"/>
+                                        <state key="normal" title="Insecure Storage: HTTP Response Cache Leak"/>
+                                        <connections>
+                                            <segue destination="6Bh-W7-dG0" kind="show" id="CZs-aj-qBi"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="meQ-vC-Afk" secondAttribute="trailing" constant="15" id="JTm-rS-bbI"/>
+                            <constraint firstItem="meQ-vC-Afk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="SoL-GL-iUQ"/>
+                            <constraint firstItem="meQ-vC-Afk" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="20" id="pd9-JR-uOq"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="126.5625"/>
         </scene>
     </scenes>
 </document>
