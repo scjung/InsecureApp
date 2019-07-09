@@ -16,7 +16,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self addTextFieldsOfKeyboardCachingScene];
+}
+
+
+- (void)addTextFieldsOfKeyboardCachingScene {
+    UITextField *textFieldDefault = [[UITextField alloc] init];
+    textFieldDefault.placeholder = @"program,auto correction=Default";
+    textFieldDefault.autocorrectionType = UITextAutocorrectionTypeDefault;
+    [self.keyboardCachingStackView addArrangedSubview:textFieldDefault];
+    
+    UITextField *textFieldYes = [[UITextField alloc] init];
+    textFieldYes.placeholder = @"program,auto correction=Yes";
+    textFieldYes.autocorrectionType = UITextAutocorrectionTypeYes;
+    [self.keyboardCachingStackView addArrangedSubview:textFieldYes];
+    
+    UITextField *textFieldNo = [[UITextField alloc] init];
+    textFieldNo.placeholder = @"program,auto correction=No";
+    textFieldNo.autocorrectionType = UITextAutocorrectionTypeNo;
+    [self.keyboardCachingStackView addArrangedSubview:textFieldNo];
 }
 
 

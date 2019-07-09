@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *HTTPRspCacheLeakStatusLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *HTTPRspCacheLeakImage;
 
+@property (weak, nonatomic) IBOutlet UIStackView *keyboardCachingStackView;
+
 - (IBAction)HTTPRspCacheLeakDownloadButton1Tapped:(UIButton *)sender;
 - (IBAction)HTTPRspCacheLeakDownloadButton2Tapped:(UIButton *)sender;
 - (IBAction)HTTPRspCacheLeakDownloadButton3Tapped:(UIButton *)sender;
